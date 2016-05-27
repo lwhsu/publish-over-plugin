@@ -95,7 +95,7 @@ public class BPBuildInfo extends BPBuildEnv {
         return !configDir.isRemote();
     }
 
-    public byte[] readFileFromMaster(final String filePath) {
+    public byte[] readFileFromMaster(final String filePath) throws InterruptedException {
         final FilePath file = configDir.child(filePath);
         InputStream inputStream = null;
         try {

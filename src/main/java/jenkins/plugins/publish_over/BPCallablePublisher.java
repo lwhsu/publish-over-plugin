@@ -34,6 +34,8 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.jenkinsci.remoting.RoleChecker;
+
 public class BPCallablePublisher implements FilePath.FileCallable<Void> {
 
     private static final long serialVersionUID = 1L;
@@ -77,6 +79,10 @@ public class BPCallablePublisher implements FilePath.FileCallable<Void> {
             LOGGER.log(Level.WARNING, Messages.exception_failedToGetHostName(), uhe);
             buildInfo.println(Messages.console_publishFromHost_unknown(uhe.getLocalizedMessage()));
         }
+    }
+
+    @Override
+    public void checkRoles(RoleChecker checker) throws SecurityException {
     }
 
 }
