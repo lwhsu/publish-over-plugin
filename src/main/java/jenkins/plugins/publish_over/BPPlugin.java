@@ -28,11 +28,11 @@ import hudson.FilePath;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
 import hudson.model.BuildListener;
-import hudson.model.Hudson;
 import hudson.model.Result;
 import hudson.model.TaskListener;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Notifier;
+import jenkins.model.Jenkins;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -105,7 +105,7 @@ public abstract class BPPlugin<PUBLISHER extends BapPublisher, CLIENT extends BP
                     new FilePath(promoted.getArtifactsDir()), promoted.getTimestamp());
         }
 
-        final BPBuildInfo buildInfo = new BPBuildInfo(listener, consolePrefix, Hudson.getInstance().getRootPath(),
+        final BPBuildInfo buildInfo = new BPBuildInfo(listener, consolePrefix, Jenkins.getInstance().getRootPath(),
                                                       currentBuildEnv, targetBuildEnv);
         fixup(build, buildInfo);
         final Result result = delegate.perform(buildInfo);
